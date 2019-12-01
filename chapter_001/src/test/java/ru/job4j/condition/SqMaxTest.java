@@ -7,11 +7,11 @@ public class SqMaxTest {
 
     @Test
     public void square() {
-        int first = 9;
+        int first = 10;
         int second = 2;
-        int third = 43;
+        int third = 12;
         int forth = 4;
-        int expected = 43;
+        int expected = 12;
         int out = SqMax.max(first,second,third,forth);
         Assert.assertEquals(expected,out);
     }
