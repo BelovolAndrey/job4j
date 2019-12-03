@@ -5,7 +5,7 @@ public class Board {
         for (int row = 0; row < height; row++) {
             for (int cell = 0; cell < width; cell++) {
                 //печатаем X - width раз.
-                if ((row % 2 != 0 && cell % 2 != 0) || row % 2 == 0 && cell % 2 == 0) {
+                if ((row + cell) % 2 == 0) {
                     System.out.print("X");
                 } else {
                     System.out.print(" ");
