@@ -14,24 +14,22 @@ public class MatrixCheck {
                 if (count1 != board.length) {
                     if (board[row][cell] == x) { // проверка по строкам
                         count1++;
-                    } else {
-                        count1 = 0;
-                    }
-                } else {
-                    result = true;
-                }
-                if (count2 != board.length) { //проверка по колонкам
-                    for (int i = 0; i < board.length; i++) {
-                        if (board[0][i] == x) {
-                            for (int j = 0; j < board.length; j++) {
-                                if (board[j][i] == x){
+                        if (count2!= board.length) {// проверка по столбцам
+                            for (int i = 0; i < board.length; i++) {
+                                if (board[i][row]==x){
                                     count2++;
-                                }else {
+                                }
+                                else {
                                     count2 =0;
                                     break;
                                 }
                             }
+                        }else {
+                            result = true;
+                            return result;
                         }
+                    } else {
+                        count1 = 0;
                     }
                 } else {
                     result = true;
