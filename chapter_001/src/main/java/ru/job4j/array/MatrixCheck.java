@@ -14,17 +14,16 @@ public class MatrixCheck {
                 if (count1 != board.length) {
                     if (board[row][cell] == x) { // проверка по строкам
                         count1++;
-                        if (count2!= board.length) {// проверка по столбцам
+                        if (count2 != board.length) {// проверка по столбцам
                             for (int i = 0; i < board.length; i++) {
-                                if (board[i][row]==x){
+                                if (board[i][row] == x) {
                                     count2++;
-                                }
-                                else {
-                                    count2 =0;
+                                } else {
+                                    count2 = 0;
                                     break;
                                 }
                             }
-                        }else {
+                        } else {
                             result = true;
                             return result;
                         }
