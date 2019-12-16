@@ -3,33 +3,18 @@ package ru.job4j.array;
 public class MatrixCheck {
     public static boolean isWin(char[][] board) {
         boolean result = false;
-        char x = 'X';
-        int count1 = 0;
-        int count2 = 0;
         for (int row = 0; row < board.length; row++) {
-            for (int cell = 0; cell < board.length; cell++) {
-                char sign = board[row][cell];
-                System.out.print(sign);
-                //for () { проверить последовательность.
+            int count1 = 0;
+            int count2 = 0;
+            if (board[row][row] == 'X') {
+                for (int cell = 0; cell < board.length; cell++) {
+                    // тут напишите нужные проверки
+                }
                 if (count1 == board.length || count2 == board.length) {
                     result = true;
-                } else {
-                    if (board[row][cell] == x) { // проверка по строкам
-                        count1++;
-                        for (int i = 0; i < board.length; i++) { // проверка по колонкам
-                            if (board[i][row] == x) {
-                                count2++;
-                            } else {
-                                count2 = 0;
-                                break;
-                            }
-                        }
-                    } else {
-                        count1 = 0;
-                    }
                 }
+                break;
             }
-            System.out.println();
         }
         return result;
     }
