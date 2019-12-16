@@ -11,27 +11,22 @@ public class MatrixCheck {
                 char sign = board[row][cell];
                 System.out.print(sign);
                 //for () { проверить последовательность.
-                if (count1 != board.length) {
+                if (count1 == board.length || count2 == board.length) {
+                    result = true;
+                } else {
                     if (board[row][cell] == x) { // проверка по строкам
                         count1++;
-                        if (count2 != board.length) {// проверка по столбцам
-                            for (int i = 0; i < board.length; i++) {
-                                if (board[i][row] == x) {
-                                    count2++;
-                                } else {
-                                    count2 = 0;
-                                    break;
-                                }
+                        for (int i = 0; i < board.length; i++) { // проверка по колонкам
+                            if (board[i][row] == x) {
+                                count2++;
+                            } else {
+                                count2 = 0;
+                                break;
                             }
-                        } else {
-                            result = true;
-                            return result;
                         }
                     } else {
                         count1 = 0;
                     }
-                } else {
-                    result = true;
                 }
             }
             System.out.println();
