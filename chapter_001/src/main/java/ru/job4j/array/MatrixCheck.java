@@ -9,6 +9,12 @@ public class MatrixCheck {
             if (board[row][row] == 'X') {
                 for (int cell = 0; cell < board.length; cell++) {
                     // тут напишите нужные проверки
+                    if (board[row][cell] == 'X') {
+                        count2++;
+                    }
+                    if (board[cell][row] == 'X') {
+                        count1++;
+                    }
                 }
                 if (count1 == board.length || count2 == board.length) {
                     result = true;
