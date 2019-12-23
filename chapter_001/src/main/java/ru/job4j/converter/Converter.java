@@ -52,18 +52,15 @@ public class Converter {
         int out = rubleToEuro(eroChek);
         boolean passed = expected == out;
         System.out.println("140 rubles are " + euro + " euro. " + passed);
-
         int dollarCheck = 120;
         int outDollarCheck = rubleToDollar(dollarCheck);
         boolean passedDollar = expected == outDollarCheck;
         System.out.println("120 rubles are " + outDollarCheck + " dollar. " + passedDollar);
-
         int euroRubCheck = 3;
         int outEuroRubCheck = euroToRub(euroRubCheck);
         int expectedEuroRubCheck = 210;
         boolean passedEuroRubCheck = expectedEuroRubCheck == outEuroRubCheck;
         System.out.println("3 euro are " + outEuroRubCheck + " rub. " + passedEuroRubCheck);
-
         int dollarRubCheck = 4;
         int outDollarRubCheck = dollarToRub(dollarRubCheck);
         int expectedDollarRubCheck = 240;
