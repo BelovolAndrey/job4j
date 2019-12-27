@@ -16,7 +16,7 @@ public class Shop {
         products2[2] = new Product("Coffee", 20);
         products2[3] = new Product("rice", 10);
 
-        delete(products2,2);
+        delete(products2, 2);
 
         for (int i = 0; i < products.length; i++) {
             Product product = products[i];
@@ -62,13 +62,12 @@ public class Shop {
 
     public static Product[] delete(Product[] products, int index) {
         products[index] = null;
-        for (int i = 0; i < products.length; i++) {
+        for (int i = index; index < products.length; index++) {
             Product product = products[i];
-            if (product == null && i < products.length - 1) {
-                products[i] = products[i + 1];
-                products[i + 1] = null;
-            }
+            products[i] = products[i + 1];
+            products[i + 1] = null;
         }
+        products[products.length - 1] = null;
         return products;
     }
 }
