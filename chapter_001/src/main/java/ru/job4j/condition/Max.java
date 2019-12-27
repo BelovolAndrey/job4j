@@ -7,10 +7,15 @@ public class Max {
     }
 
     public static int max(int a, int b, int c) {
-        return max(a, b) > c ? max(a, b) : c;
+        int result = max(a, b);
+        result = max(result, c);
+        return result;
     }
 
     public static int max(int a, int b, int c, int d) {
-        return max(a, b, c) > d ? max(a, b, c) : d;
+        int result = max(a, b);
+        result = max(result, c);
+        result = max(result, d);
+        return result;
     }
 }
