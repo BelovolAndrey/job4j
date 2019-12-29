@@ -52,8 +52,7 @@ public class Tracker {
                 index++;
             }
         }
-        tempItems = Arrays.copyOf(tempItems, index);
-        return tempItems;
+        return Arrays.copyOf(tempItems, index);
     }
 
     /**
@@ -75,7 +74,7 @@ public class Tracker {
                 }
             }
         }
-        return tempItems;
+        return Arrays.copyOf(tempItems, index);
     }
 
     /**
