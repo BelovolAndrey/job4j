@@ -1,20 +1,17 @@
 package ru.job4j.tracker;
 
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class StartUI {
 
-    public void init(Scanner scanner, Tracker tracker) {
+    public void init(Input input, Tracker tracker) {
         boolean run = false;
         while (run) {
             this.showMenu();
             System.out.print("Select: ");
-            int select = Integer.valueOf(scanner.nextLine());
+            int select = Integer.parseInt(input.askStr(""));
             if (select == 0) {
                 System.out.println("=== Create a new Item ====");
                 System.out.print("Enter name: ");
-                String name = scanner.nextLine();
+                String name = input.askStr("");
                 Item item = new Item(name);
                 tracker.add(item);
 //            } else if (...) {
@@ -34,15 +31,13 @@ public class StartUI {
                 // в данный момент метод удаления не реализован
             } else if (select == 4) {
                 System.out.println("=== Find item by Id ====");
-                Scanner input = new Scanner(System.in);
                 System.out.println("Введите id заявки");
-                String id = input.nextLine();
+                String id = input.askStr("");
                 System.out.println(tracker.findById(id));
             } else if (select == 5) {
                 System.out.println("=== Find items by name ====");
-                Scanner input = new Scanner(System.in);
                 System.out.println("Введите имя заявки");
-                String name = input.nextLine();
+                String name = input.askStr("");
                 for (Item item : tracker.findByName(name)) {
                     System.out.println(item);
                 }
@@ -66,8 +61,8 @@ public class StartUI {
 
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
-        new StartUI().init(scanner, tracker);
+        new StartUI().init(input, tracker);
     }
 }
