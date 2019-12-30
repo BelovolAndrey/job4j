@@ -22,7 +22,6 @@ public class StartUI {
             } else if (select == 1) {
                 System.out.println("=== Show all items ====");
                 Item[] tempItems = new Item[tracker.findAll().length];
-                tempItems = Arrays.copyOf(tempItems, tracker.findAll().length);
                 for (int i = 0; i < tempItems.length; i++) {
                     Item item = tempItems[i];
                     System.out.println(item);
@@ -44,7 +43,9 @@ public class StartUI {
                 Scanner input = new Scanner(System.in);
                 System.out.println("Введите имя заявки");
                 String name = input.nextLine();
-                System.out.println(tracker.findByName(name));
+                for (Item item : tracker.findByName(name)) {
+                    System.out.println(item);
+                }
             } else if (select == 6) {
                 run = false;
             }
