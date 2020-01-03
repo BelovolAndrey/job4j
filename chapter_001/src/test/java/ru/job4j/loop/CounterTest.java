@@ -10,7 +10,7 @@ public class CounterTest {
         int min = 3;
         int max = 20;
         int expected = 108;
-        int out = new Counter().add(min,max);
+        int out = new Counter().add(min, max);
         Assert.assertEquals(expected, out);
     }
 }
