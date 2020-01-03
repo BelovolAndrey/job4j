@@ -10,7 +10,6 @@ public class College {
         student.setPatronymic("Иванович");
         student.setGroup("Группа 3");
         student.setReceiptDate(new Date());
-        System.out.println("ФИО: " + student.getSurname() + " " + student.getName() + " " + student.getPatronymic() +
-                " Группа: " + student.getGroup() + " Дата поступления: " + student.getReceiptDate());
+        System.out.println("ФИО: " + student.getSurname() + " " + student.getName() + " " + student.getPatronymic() + " Группа: " + student.getGroup() + " Дата поступления: " + student.getReceiptDate());
     }
 }

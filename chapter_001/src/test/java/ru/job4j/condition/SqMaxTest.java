@@ -12,7 +12,7 @@ public class SqMaxTest {
         int third = 12;
         int forth = 4;
         int expected = 12;
-        int out = SqMax.max(first,second,third,forth);
-        Assert.assertEquals(expected,out);
+        int out = SqMax.max(first, second, third, forth);
+        Assert.assertEquals(expected, out);
     }
 }

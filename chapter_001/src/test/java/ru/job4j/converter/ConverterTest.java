@@ -22,18 +22,18 @@ public class ConverterTest {
     }
 
     @Test
-    public void euroToRub(){
+    public void euroToRub() {
         int in = 3;
         int expected = 210;
-        int out= Converter.euroToRub(in);
+        int out = Converter.euroToRub(in);
         Assert.assertEquals(expected, out);
     }
 
     @Test
-    public void dollarToRub(){
+    public void dollarToRub() {
         int in = 4;
         int expected = 240;
-        int out= Converter.dollarToRub(in);
+        int out = Converter.dollarToRub(in);
         Assert.assertEquals(expected, out);
     }
 }
