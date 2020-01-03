@@ -20,12 +20,16 @@ public class StartUI {
 
     public static void editItem(Input input, Tracker tracker) {
         System.out.println("=== Edit item ====");
-        // в данный момент метод редактирования не реализован
+        Item item = new Item(String.valueOf(input));
+        String id = item.getId();
+        tracker.replace(id, item);
     }
 
     public static void deleteItem(Input input, Tracker tracker) {
         System.out.println("=== Delete item ====");
-        // в данный момент метод удаления не реализован
+        Item item = new Item(String.valueOf(input));
+        String id = item.getId();
+        tracker.delete(id);
     }
 
     public static void findById(Input input, Tracker tracker) {
