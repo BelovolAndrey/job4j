@@ -84,13 +84,54 @@ public class Tracker {
      * @return найденный элемент
      */
     public Item findById(String id) {
-        Item item = null;
-        for (int i = 0; i < items.length; i++) {
-            item = items[i];
-            if (item.getId().equals(id)) {
+        try {
+            return items[indexOf(id)];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Замена существующего Item на новый с сохранением старого id
+     *
+     * @param id   поиска Item который требуется заменить
+     * @param item которым будет произведена замена
+     */
+    public void replace(String id, Item item) {
+        int index = indexOf(id);
+        item.setId(id);
+        items[index] = item;
+    }
+
+    /**
+     * Метод возврата индекса Item по id
+     *
+     * @param id для поиска Item
+     * @return возвращаемый индекс
+     */
+    private int indexOf(String id) {
+        int rsl = -1;
+        for (int index = 0; index < position; index++) {
+            if (items[index].getId().equals(id)) {
+                rsl = index;
                 break;
             }
         }
-        return item;
+        return rsl;
+    }
+
+    /**
+     * Удаление элемента по id и смещение масива на 1 в лево
+     *
+     * @param id элемента требуемого удалить
+     */
+    public void delete(String id) {
+        int size = position - indexOf(id);
+        int start = indexOf(id) + 1;
+        int inputFrom = indexOf(id);
+        items[indexOf(id)] = null;
+        System.arraycopy(items, start, items, inputFrom, size - 1);
+        items[position - 1] = null;
+        position--;
     }
 }
