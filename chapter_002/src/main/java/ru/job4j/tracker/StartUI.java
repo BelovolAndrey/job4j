@@ -23,6 +23,7 @@ public class StartUI {
         Item item = new Item(String.valueOf(input));
         String id = item.getId();
         tracker.replace(id, item);
+        System.out.println("Элемент id: " + id +", был изменен");
     }
 
     public static void deleteItem(Input input, Tracker tracker) {
@@ -30,6 +31,7 @@ public class StartUI {
         Item item = new Item(String.valueOf(input));
         String id = item.getId();
         tracker.delete(id);
+        System.out.println("Элемент id: " + id +", был удален");
     }
 
     public static void findById(Input input, Tracker tracker) {
