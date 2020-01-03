@@ -47,13 +47,13 @@ public class TrackerTest {
     }
 
     @Test
-    public void whenReplace(){
+    public void whenReplace() {
         Tracker tracker = new Tracker();
         Item bug = new Item("Bug");
         Item bug2 = new Item("bug");
         tracker.add(bug);
         String id = bug.getId();
-        tracker.replace(id,bug2);
+        tracker.replace(id, bug2);
         assertThat(tracker.findById(id), is(bug2));
     }
 }
