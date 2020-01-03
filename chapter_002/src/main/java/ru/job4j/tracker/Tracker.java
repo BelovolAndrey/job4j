@@ -84,11 +84,10 @@ public class Tracker {
      * @return найденный элемент
      */
     public Item findById(String id) {
-        try {
+        if (indexOf(id) >= 0) {
             return items[indexOf(id)];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return null;
         }
+        return null;
     }
 
     /**
@@ -98,9 +97,12 @@ public class Tracker {
      * @param item которым будет произведена замена
      */
     public void replace(String id, Item item) {
-        int index = indexOf(id);
-        item.setId(id);
-        items[index] = item;
+        if (indexOf(id) >= 0) {
+            int index = indexOf(id);
+            item.setId(id);
+            items[index] = item;
+        }
+        return;
     }
 
     /**
