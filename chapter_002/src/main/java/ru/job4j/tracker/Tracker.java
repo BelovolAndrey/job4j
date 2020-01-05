@@ -96,14 +96,16 @@ public class Tracker {
      *
      * @param id   поиска Item который требуется заменить
      * @param item которым будет произведена замена
+     * @return возвращаемое значение успешного или нет изменения объекта
      */
-    public void replace(String id, Item item) {
+    public boolean replace(String id, Item item) {
         int index = indexOf(id);
         if (index >= 0) {
             item.setId(id);
             items[index] = item;
+            return true;
         }
-        return;
+        return false;
     }
 
     /**
@@ -127,15 +129,20 @@ public class Tracker {
      * Удаление элемента по id и смещение масива на 1 в лево
      *
      * @param id элемента требуемого удалить
+     * @return
      */
-    public void delete(String id) {
+    public boolean delete(String id) {
         int index = indexOf(id);
-        int size = position - index;
-        int start = index + 1;
-        int inputFrom = index;
-        items[index] = null;
-        System.arraycopy(items, start, items, inputFrom, size - 1);
-        items[position - 1] = null;
-        position--;
+        if (index >= 0) {
+            int size = position - index;
+            int start = index + 1;
+            int inputFrom = index;
+            items[index] = null;
+            System.arraycopy(items, start, items, inputFrom, size - 1);
+            items[position - 1] = null;
+            position--;
+            return true;
+        }
+        return false;
     }
 }
