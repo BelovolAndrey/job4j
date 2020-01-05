@@ -45,7 +45,7 @@ public class Tracker {
     public Item[] findAll() {
         Item[] tempItems = new Item[items.length];
         int index = 0;
-        for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < position; i++) {
             Item item = items[i];
             if (item != null) {
                 tempItems[index] = item;
@@ -65,7 +65,7 @@ public class Tracker {
     public Item[] findByName(String key) {
         Item[] tempItems = new Item[items.length];
         int index = 0;
-        for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < position; i++) {
             Item item = items[i];
             if (item != null) {
                 if (item.getName().equals(key)) {
