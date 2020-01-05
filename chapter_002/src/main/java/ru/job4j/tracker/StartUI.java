@@ -56,7 +56,7 @@ public class StartUI {
     }
 
     public void init(Input input, Tracker tracker) {
-        boolean run = false;
+        boolean run = true;
         while (run) {
             this.showMenu();
             System.out.print("Select: ");
