@@ -21,16 +21,24 @@ public class StartUI {
         System.out.println("=== Edit item ====");
         Item item = new Item(String.valueOf(input));
         String id = item.getId();
-        tracker.replace(id, item);
-        System.out.println("Элемент id: " + id + ", был изменен");
+        boolean check = tracker.replace(id, item);
+        if (check) {
+            System.out.println("Элемент id: " + id + ", был изменен");
+        } else {
+            System.out.println("Элемент id: " + id + ", не найден");
+        }
     }
 
     public static void deleteItem(Input input, Tracker tracker) {
         System.out.println("=== Delete item ====");
         Item item = new Item(String.valueOf(input));
         String id = item.getId();
-        tracker.delete(id);
-        System.out.println("Элемент id: " + id + ", был удален");
+        boolean check = tracker.delete(id);
+        if (check) {
+            System.out.println("Элемент id: " + id + ", был удален");
+        } else {
+            System.out.println("Элемент id: " + id + ", не найден");
+        }
     }
 
     public static void findById(Input input, Tracker tracker) {
