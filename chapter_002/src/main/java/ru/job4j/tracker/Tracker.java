@@ -84,8 +84,9 @@ public class Tracker {
      * @return найденный элемент
      */
     public Item findById(String id) {
-        if (indexOf(id) >= 0) {
-            return items[indexOf(id)];
+        int index = indexOf(id);
+        if (index >= 0) {
+            return items[index];
         }
         return null;
     }
@@ -97,8 +98,8 @@ public class Tracker {
      * @param item которым будет произведена замена
      */
     public void replace(String id, Item item) {
-        if (indexOf(id) >= 0) {
-            int index = indexOf(id);
+        int index = indexOf(id);
+        if (index >= 0) {
             item.setId(id);
             items[index] = item;
         }
@@ -128,10 +129,11 @@ public class Tracker {
      * @param id элемента требуемого удалить
      */
     public void delete(String id) {
-        int size = position - indexOf(id);
-        int start = indexOf(id) + 1;
-        int inputFrom = indexOf(id);
-        items[indexOf(id)] = null;
+        int index = indexOf(id);
+        int size = position - index;
+        int start = index + 1;
+        int inputFrom = index;
+        items[index] = null;
         System.arraycopy(items, start, items, inputFrom, size - 1);
         items[position - 1] = null;
         position--;
