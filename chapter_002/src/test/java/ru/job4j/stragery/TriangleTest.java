@@ -13,10 +13,10 @@ public class TriangleTest {
                 triangle.draw(),
                 is(
                         new StringBuilder()
-                                .append("   +   " + "\n")
-                                .append(" +   + " + "\n")
-                                .append("+     +" + "\n")
-                                .append("+++++++" + "\n")
+                                .append("   +   " + System.lineSeparator())
+                                .append(" +   + " + System.lineSeparator())
+                                .append("+     +" + System.lineSeparator())
+                                .append("+++++++" + System.lineSeparator())
                                 .toString()
                 )
         );
