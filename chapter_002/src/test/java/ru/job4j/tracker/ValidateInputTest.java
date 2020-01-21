@@ -43,13 +43,12 @@ public class ValidateInputTest {
     @Test
     public void whenIllegalStateInput() {
         ValidateInput input = new ValidateInput(
-                new StubInput(new String[]{"1", "2"})
+                new StubInput(new String[]{"3", "1"})
         );
-        input.askInt("3",0);
+        input.askInt("3",2);
         assertThat(
                 out.toString(),
                 is(String.format("Please select key from menu.%n"))
         );
-        System.setOut(stdout);
     }
 }
