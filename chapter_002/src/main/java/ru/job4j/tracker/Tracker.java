@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -7,8 +8,8 @@ public class Tracker {
     /**
      * Массив для хранения заявок.
      */
-    private final Item[] items = new Item[100];
-
+//    private final Item[] items = new Item[100];
+    private final ArrayList<Item> items = new ArrayList<>();
     /**
      * Указатель ячейки для новой заявки.
      */
@@ -21,7 +22,8 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        items[this.position++] = item;
+//        items[this.position++] = item;
+        items.add(item);
         return item;
     }
 
@@ -42,17 +44,22 @@ public class Tracker {
      *
      * @return массив элементов
      */
-    public Item[] findAll() {
-        Item[] tempItems = new Item[items.length];
-        int index = 0;
-        for (int i = 0; i < position; i++) {
-            Item item = items[i];
-            if (item != null) {
-                tempItems[index] = item;
-                index++;
-            }
+//    public Item[] findAll() {
+//        Item[] tempItems = new Item[items.length];
+//        int index = 0;
+//        for (int i = 0; i < position; i++) {
+//            Item item = items[i];
+//            if (item != null) {
+//                tempItems[index] = item;
+//                index++;
+//            }
+//        }
+//        return Arrays.copyOf(tempItems, index);
+//    }
+    public void findAll() {
+        for (Item item : items) {
+            System.out.println(item);
         }
-        return Arrays.copyOf(tempItems, index);
     }
 
     /**
@@ -61,20 +68,26 @@ public class Tracker {
      * @param key имя элемнта который требуется найти
      * @return результат поиска
      */
-
-    public Item[] findByName(String key) {
-        Item[] tempItems = new Item[items.length];
-        int index = 0;
-        for (int i = 0; i < position; i++) {
-            Item item = items[i];
-            if (item != null) {
-                if (item.getName().equals(key)) {
-                    tempItems[index] = item;
-                    index++;
-                }
+//    public Item[] findByName(String key) {
+//        Item[] tempItems = new Item[items.length];
+//        int index = 0;
+//        for (int i = 0; i < position; i++) {
+//            Item item = items[i];
+//            if (item != null) {
+//                if (item.getName().equals(key)) {
+//                    tempItems[index] = item;
+//                    index++;
+//                }
+//            }
+//        }
+//        return Arrays.copyOf(tempItems, index);
+//    }
+    public void findByName(String key) {
+        for (Item item : items) {
+            if (item.getName().equals(key)) {
+                System.out.println(item.getId() + " " + item.getName());
             }
         }
-        return Arrays.copyOf(tempItems, index);
     }
 
     /**
@@ -83,10 +96,18 @@ public class Tracker {
      * @param id элемента требующегося найти
      * @return найденный элемент
      */
+//    public Item findById(String id) {
+//        int index = indexOf(id);
+//        if (index >= 0) {
+//            return items[index];
+//        }
+//        return null;
+//    }
     public Item findById(String id) {
-        int index = indexOf(id);
-        if (index >= 0) {
-            return items[index];
+        for (Item item : items) {
+            if (item.getId().equals(id)) {
+                return item;
+            }
         }
         return null;
     }
@@ -98,32 +119,43 @@ public class Tracker {
      * @param item которым будет произведена замена
      * @return возвращаемое значение успешного или нет изменения объекта
      */
+//    public boolean replace(String id, Item item) {
+//        int index = indexOf(id);
+//        if (index >= 0) {
+//            item.setId(id);
+//            items[index] = item;
+//            return true;
+//        }
+//        return false;
+//    }
     public boolean replace(String id, Item item) {
-        int index = indexOf(id);
-        if (index >= 0) {
-            item.setId(id);
-            items[index] = item;
-            return true;
+        for (Item tempItem : items) {
+            if (tempItem.getId().equals(id)) {
+                int index = items.indexOf(tempItem);
+                items.remove(index);
+                items.add(index, item);
+                return true;
+            }
         }
         return false;
     }
 
-    /**
-     * Метод возврата индекса Item по id
-     *
-     * @param id для поиска Item
-     * @return возвращаемый индекс
-     */
-    private int indexOf(String id) {
-        int rsl = -1;
-        for (int index = 0; index < position; index++) {
-            if (items[index].getId().equals(id)) {
-                rsl = index;
-                break;
-            }
-        }
-        return rsl;
-    }
+//    /**
+//     * Метод возврата индекса Item по id
+//     *
+//     * @param id для поиска Item
+//     * @return возвращаемый индекс
+//     */
+//    private int indexOf(String id) {
+//        int rsl = -1;
+//        for (int index = 0; index < position; index++) {
+//            if (items[index].getId().equals(id)) {
+//                rsl = index;
+//                break;
+//            }
+//        }
+//        return rsl;
+//    }
 
     /**
      * Удаление элемента по id и смещение масива на 1 в лево
@@ -131,17 +163,26 @@ public class Tracker {
      * @param id элемента требуемого удалить
      * @return
      */
+//    public boolean delete(String id) {
+//        int index = indexOf(id);
+//        if (index >= 0) {
+//            int size = position - index;
+//            int start = index + 1;
+//            int inputFrom = index;
+//            items[index] = null;
+//            System.arraycopy(items, start, items, inputFrom, size - 1);
+//            items[position - 1] = null;
+//            position--;
+//            return true;
+//        }
+//        return false;
+//    }
     public boolean delete(String id) {
-        int index = indexOf(id);
-        if (index >= 0) {
-            int size = position - index;
-            int start = index + 1;
-            int inputFrom = index;
-            items[index] = null;
-            System.arraycopy(items, start, items, inputFrom, size - 1);
-            items[position - 1] = null;
-            position--;
-            return true;
+        for (Item item : items) {
+            if (item.getId().equals(id)) {
+                items.remove(items.indexOf(item));
+                return true;
+            }
         }
         return false;
     }
