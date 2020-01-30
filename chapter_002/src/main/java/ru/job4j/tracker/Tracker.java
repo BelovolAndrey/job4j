@@ -1,7 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Tracker {
@@ -9,7 +9,7 @@ public class Tracker {
      * Массив для хранения заявок.
      */
 //    private final Item[] items = new Item[100];
-    private final ArrayList<Item> items = new ArrayList<>();
+    private final List<Item> items = new ArrayList<>();
     /**
      * Указатель ячейки для новой заявки.
      */
@@ -56,10 +56,8 @@ public class Tracker {
 //        }
 //        return Arrays.copyOf(tempItems, index);
 //    }
-    public void findAll() {
-        for (Item item : items) {
-            System.out.println(item);
-        }
+    public List<Item> findAll() {
+        return items;
     }
 
     /**
@@ -82,12 +80,14 @@ public class Tracker {
 //        }
 //        return Arrays.copyOf(tempItems, index);
 //    }
-    public void findByName(String key) {
+    public List<Item> findByName(String key) {
+        List<Item> tempItems = new ArrayList<>();
         for (Item item : items) {
             if (item.getName().equals(key)) {
-                System.out.println(item.getId() + " " + item.getName());
+                tempItems.add(item);
             }
         }
+        return tempItems;
     }
 
     /**
@@ -129,13 +129,16 @@ public class Tracker {
 //        return false;
 //    }
     public boolean replace(String id, Item item) {
+        int index = 0;
         for (Item tempItem : items) {
-            if (tempItem.getId().equals(id)) {
-                int index = items.indexOf(tempItem);
-                items.remove(index);
-                items.add(index, item);
-                return true;
+            String tempId = tempItem.getId();
+            if (!tempId.equals(id)) {
+                index++;
             }
+            items.remove(index);
+            items.add(index, item);
+            items.get(index).setId(tempId);
+            return true;
         }
         return false;
     }
@@ -178,11 +181,13 @@ public class Tracker {
 //        return false;
 //    }
     public boolean delete(String id) {
+        int index = 0;
         for (Item item : items) {
-            if (item.getId().equals(id)) {
-                items.remove(items.indexOf(item));
-                return true;
+            if (!item.getId().equals(id)) {
+                index++;
             }
+            items.remove(index);
+            return true;
         }
         return false;
     }
