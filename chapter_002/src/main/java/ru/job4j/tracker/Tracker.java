@@ -129,12 +129,9 @@ public class Tracker {
 //        return false;
 //    }
     public boolean replace(String id, Item item) {
-        int index = 0;
-        for (Item tempItem : items) {
-            String tempId = tempItem.getId();
-            if (!tempId.equals(id)) {
-                index++;
-            }
+        int index = indexOf(id);
+        if (index >= 0) {
+            String tempId = items.get(index).getId();
             items.remove(index);
             items.add(index, item);
             items.get(index).setId(tempId);
@@ -143,12 +140,12 @@ public class Tracker {
         return false;
     }
 
-//    /**
-//     * Метод возврата индекса Item по id
-//     *
-//     * @param id для поиска Item
-//     * @return возвращаемый индекс
-//     */
+    /**
+     * Метод возврата индекса Item по id
+     *
+     * @param id для поиска Item
+     * @return возвращаемый индекс
+     */
 //    private int indexOf(String id) {
 //        int rsl = -1;
 //        for (int index = 0; index < position; index++) {
@@ -159,6 +156,16 @@ public class Tracker {
 //        }
 //        return rsl;
 //    }
+    private int indexOf(String id) {
+        int rsl = -1;
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId().equals(id)) {
+                rsl = i;
+                return rsl;
+            }
+        }
+        return rsl;
+    }
 
     /**
      * Удаление элемента по id и смещение масива на 1 в лево
@@ -181,11 +188,8 @@ public class Tracker {
 //        return false;
 //    }
     public boolean delete(String id) {
-        int index = 0;
-        for (Item item : items) {
-            if (!item.getId().equals(id)) {
-                index++;
-            }
+        int index = indexOf(id);
+        if (index >= 0) {
             items.remove(index);
             return true;
         }
