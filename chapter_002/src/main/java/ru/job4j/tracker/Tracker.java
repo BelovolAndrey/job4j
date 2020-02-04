@@ -131,10 +131,8 @@ public class Tracker {
     public boolean replace(String id, Item item) {
         int index = indexOf(id);
         if (index >= 0) {
-            String tempId = items.get(index).getId();
-            items.remove(index);
-            items.add(index, item);
-            items.get(index).setId(tempId);
+            item.setId(id);
+            items.set(index, item);
             return true;
         }
         return false;
