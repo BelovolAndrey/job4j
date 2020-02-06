@@ -7,11 +7,6 @@ import java.util.Comparator;
 public class ItemSortReverse implements Comparator<Item> {
     @Override
     public int compare(Item first, Item second) {
-        if (first.getName().compareTo(second.getName()) == -1) {
-            return 1;
-        } else if (first.getName().compareTo(second.getName()) == 1) {
-            return -1;
-        }
-        return 0;
+        return second.getName().compareTo(first.getName());
     }
 }
