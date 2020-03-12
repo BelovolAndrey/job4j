@@ -1,6 +1,7 @@
 package ru.job4j.search;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 public class PhoneDictionary {
     private ArrayList<Person> persons = new ArrayList<Person>();
@@ -19,6 +20,18 @@ public class PhoneDictionary {
         ArrayList<Person> result = new ArrayList<>();
         for (Person person : persons) {
             if (person.getName().contains(key) || person.getSurname().contains(key) || person.getAddress().contains(key) || person.getPhone().contains(key)) {
+                result.add(person);
+            }
+        }
+        return result;
+    }
+
+    //2. В классе StartUI заменить вывод в консоль на Consumer.[#202761]
+    public ArrayList<Person> find2(String key) {
+        Predicate<Person> combine = s -> s.getName().equals(key) || s.getPhone().equals(key) || s.getSurname().equals(key) || s.getAddress().equals(key);
+        ArrayList<Person> result = new ArrayList<>();
+        for (Person person : persons) {
+            if (combine.test(person)) {
                 result.add(person);
             }
         }
