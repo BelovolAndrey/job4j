@@ -28,10 +28,14 @@ public class PhoneDictionary {
 
     //2. В классе StartUI заменить вывод в консоль на Consumer.[#202761]
     public ArrayList<Person> find2(String key) {
-        Predicate<Person> combine = s -> s.getName().equals(key) || s.getPhone().equals(key) || s.getSurname().equals(key) || s.getAddress().equals(key);
+//        Predicate<Person> combine = s -> s.getName().equals(key) || s.getPhone().equals(key) || s.getSurname().equals(key) || s.getAddress().equals(key);
+        Predicate<Person> combineName = s -> s.getName().equals(key);
+        Predicate<Person> combinePhone = s -> s.getPhone().equals(key);
+        Predicate<Person> combineSurname = s -> s.getSurname().equals(key);
+        Predicate<Person> combineAddress = s -> s.getAddress().equals(key);
         ArrayList<Person> result = new ArrayList<>();
         for (Person person : persons) {
-            if (combine.test(person)) {
+            if (combineName.or(combinePhone.or(combineSurname.or(combineAddress))).test(person)) {
                 result.add(person);
             }
         }
