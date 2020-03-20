@@ -33,9 +33,10 @@ public class PhoneDictionary {
         Predicate<Person> combinePhone = s -> s.getPhone().equals(key);
         Predicate<Person> combineSurname = s -> s.getSurname().equals(key);
         Predicate<Person> combineAddress = s -> s.getAddress().equals(key);
+        Predicate<Person> resultPredicate = combineName.or(combinePhone.or(combineSurname.or(combineAddress)));
         ArrayList<Person> result = new ArrayList<>();
         for (Person person : persons) {
-            if (combineName.or(combinePhone.or(combineSurname.or(combineAddress))).test(person)) {
+            if (resultPredicate.test(person)) {
                 result.add(person);
             }
         }
