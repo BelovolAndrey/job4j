@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 
@@ -33,7 +34,31 @@ public class SchoolTest {
         List<Student> stud = students.stream().collect(Collectors.toList());
         Predicate<Student> combine = s -> s.getScore() >= 70 & s.getScore() <= 100;
         List<Student> temp = new School().collect(students, combine);
-        assertThat(temp.size(), is(3));
+        List<Student> expect = Arrays.asList(
+                new Student(70),
+                new Student(80),
+                new Student(90)
+        );
+//        boolean result = temp.size() == expect.size();
+//        for (int i = 0; i < temp.size(); i++) {
+//            if (temp.get(i).equals(expect.get(i))) {
+//                result = true;
+//            }
+//            result = false;
+//            break;
+//        }
+        boolean result = temp.size() == expect.size();
+        for (int i = 0; i < temp.size(); i++) {
+            if (temp.get(i).getScore() != expect.get(i).getScore()) {
+                result = false;
+                break;
+            }
+            result = true;
+        }
+        assertThat(result, is(true));
+//        assertThat(temp, is(expect));
+//        assertEquals(temp, is(expect));
+//        assertThat(temp.equals(expect));
     }
 
     @Test

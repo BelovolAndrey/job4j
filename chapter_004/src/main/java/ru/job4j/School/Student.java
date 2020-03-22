@@ -14,4 +14,9 @@ public class Student {
     public Student(int score) {
         this.score = score;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }
