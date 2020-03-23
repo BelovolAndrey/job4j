@@ -6,10 +6,8 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 
@@ -31,7 +29,6 @@ public class SchoolTest {
 
     @Test
     public void whenGroupA() {
-        List<Student> stud = students.stream().collect(Collectors.toList());
         Predicate<Student> combine = s -> s.getScore() >= 70 & s.getScore() <= 100;
         List<Student> temp = new School().collect(students, combine);
         List<Student> expect = Arrays.asList(
@@ -39,41 +36,52 @@ public class SchoolTest {
                 new Student(80),
                 new Student(90)
         );
-//        boolean result = temp.size() == expect.size();
-//        for (int i = 0; i < temp.size(); i++) {
-//            if (temp.get(i).equals(expect.get(i))) {
-//                result = true;
-//            }
-//            result = false;
-//            break;
-//        }
         boolean result = temp.size() == expect.size();
         for (int i = 0; i < temp.size(); i++) {
-            if (temp.get(i).getScore() != expect.get(i).getScore()) {
+            if (!temp.get(i).equals(expect.get(i))) {
                 result = false;
                 break;
             }
             result = true;
         }
         assertThat(result, is(true));
-//        assertThat(temp, is(expect));
-//        assertEquals(temp, is(expect));
-//        assertThat(temp.equals(expect));
     }
 
     @Test
     public void whenGroupB() {
-        List<Student> stud = students.stream().collect(Collectors.toList());
         Predicate<Student> combine = s -> s.getScore() >= 50 & s.getScore() < 70;
         List<Student> temp = new School().collect(students, combine);
-        assertThat(temp.size(), is(2));
+        List<Student> expect = Arrays.asList(
+                new Student(50),
+                new Student(60)
+        );
+        boolean result = temp.size() == expect.size();
+        for (int i = 0; i < temp.size(); i++) {
+            if (!temp.get(i).equals(expect.get(i))) {
+                result = false;
+                break;
+            }
+            result = true;
+        }
+        assertThat(result, is(true));
     }
 
     @Test
     public void whenGroupC() {
-        List<Student> stud = students.stream().collect(Collectors.toList());
         Predicate<Student> combine = s -> s.getScore() >= 0 & s.getScore() < 50;
         List<Student> temp = new School().collect(students, combine);
-        assertThat(temp.size(), is(2));
+        List<Student> expect = Arrays.asList(
+                new Student(30),
+                new Student(40)
+        );
+        boolean result = temp.size() == expect.size();
+        for (int i = 0; i < temp.size(); i++) {
+            if (!temp.get(i).equals(expect.get(i))) {
+                result = false;
+                break;
+            }
+            result = true;
+        }
+        assertThat(result, is(true));
     }
 }
