@@ -30,58 +30,34 @@ public class SchoolTest {
     @Test
     public void whenGroupA() {
         Predicate<Student> combine = s -> s.getScore() >= 70 & s.getScore() <= 100;
-        List<Student> temp = new School().collect(students, combine);
+        List<Student> out = new School().collect(students, combine);
         List<Student> expect = Arrays.asList(
                 new Student(70),
                 new Student(80),
                 new Student(90)
         );
-        boolean result = temp.size() == expect.size();
-        for (int i = 0; i < temp.size(); i++) {
-            if (!temp.get(i).equals(expect.get(i))) {
-                result = false;
-                break;
-            }
-            result = true;
-        }
-        assertThat(result, is(true));
+        assertThat(out, is(expect));
     }
 
     @Test
     public void whenGroupB() {
         Predicate<Student> combine = s -> s.getScore() >= 50 & s.getScore() < 70;
-        List<Student> temp = new School().collect(students, combine);
+        List<Student> out = new School().collect(students, combine);
         List<Student> expect = Arrays.asList(
                 new Student(50),
                 new Student(60)
         );
-        boolean result = temp.size() == expect.size();
-        for (int i = 0; i < temp.size(); i++) {
-            if (!temp.get(i).equals(expect.get(i))) {
-                result = false;
-                break;
-            }
-            result = true;
-        }
-        assertThat(result, is(true));
+        assertThat(out, is(expect));
     }
 
     @Test
     public void whenGroupC() {
         Predicate<Student> combine = s -> s.getScore() >= 0 & s.getScore() < 50;
-        List<Student> temp = new School().collect(students, combine);
+        List<Student> out = new School().collect(students, combine);
         List<Student> expect = Arrays.asList(
                 new Student(30),
                 new Student(40)
         );
-        boolean result = temp.size() == expect.size();
-        for (int i = 0; i < temp.size(); i++) {
-            if (!temp.get(i).equals(expect.get(i))) {
-                result = false;
-                break;
-            }
-            result = true;
-        }
-        assertThat(result, is(true));
+        assertThat(out, is(expect));
     }
 }
