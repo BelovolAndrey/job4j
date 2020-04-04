@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Student {
     private int score;
+    private String surname;
 
     public int getScore() {
         return score;
@@ -13,8 +14,17 @@ public class Student {
         this.score = score;
     }
 
-    public Student(int score) {
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public Student(String surname, int score) {
         this.score = score;
+        this.surname = surname;
     }
 
     @Override

@@ -17,13 +17,13 @@ public class SchoolTest {
     @Before
     public void prepareList() {
         students = Arrays.asList(
-                new Student(30),
-                new Student(40),
-                new Student(50),
-                new Student(60),
-                new Student(70),
-                new Student(80),
-                new Student(90)
+                new Student("Top1", 30),
+                new Student("Top2", 40),
+                new Student("Top3", 50),
+                new Student("Top4", 60),
+                new Student("Top5", 70),
+                new Student("Top6", 80),
+                new Student("Top7", 90)
         );
     }
 
@@ -32,9 +32,9 @@ public class SchoolTest {
         Predicate<Student> combine = s -> s.getScore() >= 70 & s.getScore() <= 100;
         List<Student> out = new School().collect(students, combine);
         List<Student> expect = Arrays.asList(
-                new Student(70),
-                new Student(80),
-                new Student(90)
+                new Student("Top5", 70),
+                new Student("Top7", 80),
+                new Student("Top8", 90)
         );
         assertThat(out, is(expect));
     }
@@ -44,8 +44,8 @@ public class SchoolTest {
         Predicate<Student> combine = s -> s.getScore() >= 50 & s.getScore() < 70;
         List<Student> out = new School().collect(students, combine);
         List<Student> expect = Arrays.asList(
-                new Student(50),
-                new Student(60)
+                new Student("Top3",50),
+                new Student("Top4",60)
         );
         assertThat(out, is(expect));
     }
@@ -55,8 +55,8 @@ public class SchoolTest {
         Predicate<Student> combine = s -> s.getScore() >= 0 & s.getScore() < 50;
         List<Student> out = new School().collect(students, combine);
         List<Student> expect = Arrays.asList(
-                new Student(30),
-                new Student(40)
+                new Student("Top1",30),
+                new Student("Top2",40)
         );
         assertThat(out, is(expect));
     }
