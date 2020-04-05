@@ -12,7 +12,7 @@ public class School {
 
     //4. Преобразование List в Map.[#202771]
     public Map<String, Integer> collect2(List<Student> students) {
-        return students.stream().distinct().collect(
+        return students.stream().collect(
                 Collectors.toMap(e -> e.getSurname(), e -> e.getScore())
         );
     }
