@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MatrixToList {
-    public void matrixToList(List<List<Integer>> matrix) {
-        matrix.stream().flatMap(e -> e.stream()).collect(Collectors.toList());
+    public List<Integer> matrixToList(List<List<Integer>> matrix) {
+        return matrix.stream().flatMap(e -> e.stream()).collect(Collectors.toList());
     }
 }
