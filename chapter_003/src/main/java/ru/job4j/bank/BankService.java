@@ -1,9 +1,7 @@
 package ru.job4j.bank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 //Банковские переводы.[#202885]
 public class BankService {
     private Map<User, List<Account>> users = new HashMap<>();
@@ -29,11 +27,16 @@ public class BankService {
     }
 
     public User findByPassport(String passport) {
-        for (User user : users.keySet()) {
-            if (user.getPassport().equals(passport)) ;
-            return user;
+//        for (User user : users.keySet()) {
+//            if (user.getPassport().equals(passport)) ;
+//            return user;
+//        }
+//        6. Тестовое задание из модуля коллекции Lite переделать на Stream API.[#202766]
+        Optional<User> search = this.users.keySet().stream().filter(e -> e.getPassport().equals(passport)).findAny();
+        if (!search.isPresent()) {
+            throw new UserNotExistException("Пользователя не существует");
         }
-        throw new UserNotExistException("Пользователя не существует");
+        return search.get();
     }
 
     public Account findByRequisite(String passport, String requisite) {
