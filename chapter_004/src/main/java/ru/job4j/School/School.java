@@ -9,11 +9,11 @@ public class School {
     public List<Student> collect(List<Student> students, Predicate<Student> predict) {
         return students.stream().filter(predict).collect(Collectors.toList());
     }
-//test
+
     //4. Преобразование List в Map.[#202771]
-    public Map<String, Integer> collect2(List<Student> students) {
+    public Map<String, Student> collect2(List<Student> students) {
         return students.stream().collect(
-                Collectors.toMap(e -> e.getSurname(), e -> e.getScore())
+                Collectors.toMap(e -> e.getSurname(), e -> e)
         );
     }
 }
