@@ -26,26 +26,28 @@ public class BankService {
         }
     }
 
+//    6. Тестовое задание из модуля коллекции Lite переделать на Stream API.[#202766]
     public User findByPassport(String passport) {
 //        for (User user : users.keySet()) {
 //            if (user.getPassport().equals(passport)) ;
 //            return user;
 //        }
 //        6. Тестовое задание из модуля коллекции Lite переделать на Stream API.[#202766]
-        Optional<User> search = this.users.keySet().stream().filter(e -> e.getPassport().equals(passport)).findAny();
-        if (!search.isPresent()) {
-            throw new UserNotExistException("Пользователя не существует");
-        }
-        return search.get();
+//        Optional<User> search = this.users.keySet().stream().filter(e -> e.getPassport().equals(passport)).findAny();
+//        if (!search.isPresent()) {
+//            throw new UserNotExistException("Пользователя не существует");
+//        }
+        return this.users.keySet().stream().filter(e -> e.getPassport().equals(passport)).findAny().orElse(null);
     }
 
     public Account findByRequisite(String passport, String requisite) {
-        for (Account account : this.users.get(findByPassport(passport))) {
-            if (account.getRequisite().equals(requisite)) {
-                return account;
-            }
-        }
-        throw new AccountNotExistException("У пользователя нет требуемого счета");
+//        for (Account account : this.users.get(findByPassport(passport))) {
+//            if (account.getRequisite().equals(requisite)) {
+//                return account;
+//            }
+//        }
+//        throw new AccountNotExistException("У пользователя нет требуемого счета");
+        return this.users.get(findByPassport(passport)).stream().filter(e -> e.getRequisite().equals(requisite)).findAny().orElse(null);
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite,
