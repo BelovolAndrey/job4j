@@ -13,20 +13,23 @@ public class BankService {
     }
 
     public void addAccount(String passport, Account account) {
-        User user = findByPassport(passport);
-        if (user == null) {
-            throw new UserNotExistException("Пользователя не существует");
-        } else {
-            ArrayList<Account> temp = (ArrayList<Account>) users.get(findByPassport(passport));
-            if (temp.indexOf(account) > -1) {
-                throw new AccountExistException("Такой счет существует");
-            } else {
-                temp.add(account);
-            }
-        }
+//        User user = findByPassport(passport);
+//        if (user == null) {
+//            throw new UserNotExistException("Пользователя не существует");
+//        } else {
+//            ArrayList<Account> temp = (ArrayList<Account>) users.get(findByPassport(passport));
+//            if (temp.indexOf(account) > -1) {
+//                throw new AccountExistException("Такой счет существует");
+//            } else {
+//                temp.add(account);
+//            }
+//        }
+//        this.users.computeIfPresent(passport,((user, accounts) -> user + ", " + accounts.stream().toArray(account)));
+//        6. Тестовое задание из модуля коллекции Lite переделать на Stream API.[#202766]
+        this.users.get(findByPassport(passport)).add(account);
     }
 
-//    6. Тестовое задание из модуля коллекции Lite переделать на Stream API.[#202766]
+    //    6. Тестовое задание из модуля коллекции Lite переделать на Stream API.[#202766]
     public User findByPassport(String passport) {
 //        for (User user : users.keySet()) {
 //            if (user.getPassport().equals(passport)) ;
